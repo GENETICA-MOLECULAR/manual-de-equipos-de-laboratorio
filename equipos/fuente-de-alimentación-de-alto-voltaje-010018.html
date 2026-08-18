@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FUENTE DE ALIMENTACIÓN DE ALTO VOLTAJE - Inventario de Equipos - Lab. Genética Molecular UNSAAC">
+  <meta name="theme-color" content="#0a1628">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <title>FUENTE DE ALIMENTACIÓN DE ALTO VOLTAJE - Inventario de Equipos</title>
+  <script>
+    const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    const savedTheme = typeof localStorage !== 'undefined' ? localStorage.getItem('theme') : null;
+    const initialTheme = savedTheme || getSystemTheme();
+    document.documentElement.setAttribute('data-theme', initialTheme);
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        document.documentElement.setAttribute('data-theme', e.matches ? 'light' : 'dark');
+      }
+    });
+  </script>
+</head>
+<body>
+  <main class="container">
+    <div class="glass-panel">
+      <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+
+      <a href="../index.html" class="back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Volver al inventario
+      </a>
+
+      <header class="header">
+        <div class="logo-container">
+          <img src="../assets/logo.png" alt="Logo Laboratorio Genética" class="logo-icon">
+        </div>
+        <div class="titles">
+          <h1>FUENTE DE ALIMENTACIÓN DE ALTO VOLTAJE</h1>
+          <h2>Código: 010018</h2>
+          <p>Área de Electroforesis</p>
+        </div>
+      </header>
+
+      <div class="detail-info">
+        <div class="info-item">
+          <div class="info-label">Código Actual</div>
+          <div class="info-value">010018</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Código Antiguo</div>
+          <div class="info-value">031069</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Modelo</div>
+          <div class="info-value">PS3003</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Marca</div>
+          <div class="info-value">ANALYTIKJENA</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Serie</div>
+          <div class="info-value">462260760029</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Color</div>
+          <div class="info-value">Blanco</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Estado</div>
+          <div class="info-value">Bueno</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Situación</div>
+          <div class="info-value">En uso</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Importe</div>
+          <div class="info-value">N/A</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Área</div>
+          <div class="info-value">Área de Electroforesis</div>
+        </div>
+      </div>
+
+      <div class="pdf-section">
+        <h3>Manual de Uso</h3>
+        <div class="placeholder-msg">
+          <h3>📄 Manual no disponible</h3>
+          <p>El manual de instrucciones para este equipo está pendiente de carga.</p>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>Laboratorio de Genética Molecular - Facultad de Ciencias Biológicas, UNSAAC</p>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  </script>
+</body>
+</html>

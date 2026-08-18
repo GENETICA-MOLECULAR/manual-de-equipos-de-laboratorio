@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Inventario de Equipos - Laboratorio de Genética Molecular UNSAAC">
+  <meta name="theme-color" content="#0a1628">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Inventario de Equipos - Lab. Genética Molecular UNSAAC</title>
+  <script>
+    const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    const savedTheme = typeof localStorage !== 'undefined' ? localStorage.getItem('theme') : null;
+    const initialTheme = savedTheme || getSystemTheme();
+    document.documentElement.setAttribute('data-theme', initialTheme);
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        document.documentElement.setAttribute('data-theme', e.matches ? 'light' : 'dark');
+      }
+    });
+  </script>
+</head>
+<body>
+  <main class="container">
+    <div class="glass-panel">
+      <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+
+      <header class="header">
+        <div class="logo-container">
+          <img src="assets/logo.png" alt="Logo Laboratorio Genética" class="logo-icon">
+        </div>
+        <div class="titles">
+          <h1>Inventario de Equipos</h1>
+          <h2>Laboratorio de Genética Molecular</h2>
+          <p>Facultad de Ciencias Biológicas, UNSAAC</p>
+        </div>
+      </header>
+
+      <div class="stats">
+        <div class="stat-card">
+          <span class="stat-value">56</span>
+          <span class="stat-label">Equipos</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">6</span>
+          <span class="stat-label">Con Manual</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">5</span>
+          <span class="stat-label">Áreas</span>
+        </div>
+      </div>
+
+      <div class="search-bar">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="searchInput" placeholder="Buscar equipo por nombre, código, marca o modelo...">
+      </div>
+
+      <div class="filters">
+            <button class="filter-btn active" data-area="todos">Todos (56)</button>
+            <button class="filter-btn" data-area="Área de Amplificación (PCR)">Área de Amplificación (PCR) (15)</button>
+            <button class="filter-btn" data-area="Área de Conservación y Criopreservación">Área de Conservación y Criopreservación (7)</button>
+            <button class="filter-btn" data-area="Área de Electroforesis">Área de Electroforesis (10)</button>
+            <button class="filter-btn" data-area="Área de Preparación Lavado y Esterilización">Área de Preparación Lavado y Esterilización (9)</button>
+            <button class="filter-btn" data-area="Área de Procesamiento">Área de Procesamiento (15)</button>
+      </div>
+
+      <div class="equipos-grid" id="equiposGrid">
+        <a href="equipos/centrifuga-convencional-011363.html" class="equipo-card" data-area="Área de Procesamiento">
+          <div class="equipo-nombre">Centrifuga convencional</div>
+          <div class="equipo-codigo">Código: 011363</div>
+          <div class="equipo-info">
+            <span>Modelo: DMO636</span>
+            <span>Marca: DLAB</span>
+            <span>Serie: 675003800080</span>
+          </div>
+          <span class="equipo-area">Área de Procesamiento</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/centrifuga-convencional-011362.html" class="equipo-card" data-area="Área de Procesamiento">
+          <div class="equipo-nombre">Centrifuga convencional</div>
+          <div class="equipo-codigo">Código: 011362</div>
+          <div class="equipo-info">
+            <span>Modelo: MicroCL17</span>
+            <span>Marca: THERMO SCIENTIFIC</span>
+            <span>Serie: 675003800074</span>
+          </div>
+          <span class="equipo-area">Área de Procesamiento</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/centrifuga-convencional-011361.html" class="equipo-card" data-area="Área de Procesamiento">
+          <div class="equipo-nombre">Centrifuga convencional</div>
+          <div class="equipo-codigo">Código: 011361</div>
+          <div class="equipo-info">
+            <span>Modelo: 5430</span>
+            <span>Marca: EPPENDORF</span>
+            <span>Serie: 675003800081</span>
+          </div>
+          <span class="equipo-area">Área de Procesamiento</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/microcentrifugadora-011360.html" class="equipo-card" data-area="Área de Procesamiento">
+          <div class="equipo-nombre">Microcentrifugadora</div>
+          <div class="equipo-codigo">Código: 011360</div>
+          <div class="equipo-info">
+            <span>Modelo: D3024</span>
+            <span>Marca: DLAB</span>
+            <span>Serie: 532278200009</span>
+          </div>
+          <span class="equipo-area">Área de Procesamiento</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/centrifuga-refrigerada-ultra-centrifuga-011359.html" class="equipo-card" data-area="Área de Procesamiento">
+          <div class="equipo-nombre">Centrifuga refrigerada (Ultra centrifuga)</div>
+          <div class="equipo-codigo">Código: 011359</div>
+          <div class="equipo-info">
+            <span>Modelo: SL 8R</span>
+            <span>Marca: THERMO SCIENTIFIC</span>
+            <span>Serie: 5322207900101</span>
+          </div>
+          <span class="equipo-area">Área de Procesamiento</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/lavadora-de-micro-placas-para-elisa-011365.html" class="equipo-card" data-area="Área de Procesamiento">
+          <div class="equipo-nombre">Lavadora de micro placas para Elisa</div>
+          <div class="equipo-codigo">Código: 011365</div>
+          <div class="equipo-info">
+            <span>Modelo: STAT FAX2600</span>
+            <span>Marca: AWARENESS</span>
+            <span>Serie: 5322207900101</span>
+          </div>
+          <span class="equipo-area">Área de Procesamiento</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/lector-de-placas-elisa-011366.html" class="equipo-card" data-area="Área de Procesamiento">
+          <div class="equipo-nombre">Lector de placas Elisa</div>
+          <div class="equipo-codigo">Código: 011366</div>
+          <div class="equipo-info">
+            <span>Modelo: STAT FAX4200</span>
+            <span>Marca: AWARENESS</span>
+            <span>Serie: 532274280006</span>
+          </div>
+          <span class="equipo-area">Área de Procesamiento</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/stereoscopio-010360.html" class="equipo-card" data-area="Área de Procesamiento">
+          <div class="equipo-nombre">Stereoscopio</div>
+          <div class="equipo-codigo">Código: 010360</div>
+          <div class="equipo-info">
+            <span>Modelo: CZM6</span>
+            <span>Marca: LABOMED</span>
+            <span>Serie: 532279510039</span>
+          </div>
+          <span class="equipo-area">Área de Procesamiento</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/agitador-orbital-052843.html" class="equipo-card" data-area="Área de Procesamiento">
+          <div class="equipo-nombre">Agitador orbital</div>
+          <div class="equipo-codigo">Código: 052843</div>
+          <div class="equipo-info">
+            <span>Modelo: iSHAK 3D-5</span>
+            <span>Marca: NEUATION</span>
+            <span>Serie: 532201600031</span>
+          </div>
+          <span class="equipo-area">Área de Procesamiento</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/microscopio-011372.html" class="equipo-card" data-area="Área de Procesamiento">
+          <div class="equipo-nombre">Microscopio</div>
+          <div class="equipo-codigo">Código: 011372</div>
+          <div class="equipo-info">
+            <span>Modelo: Axiostar plus</span>
+            <span>Marca: ZEISS</span>
+            <span>Serie: 532278560579</span>
+          </div>
+          <span class="equipo-area">Área de Procesamiento</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/homogeneizador-de-muestraz-011374.html" class="equipo-card" data-area="Área de Procesamiento">
+          <div class="equipo-nombre">Homogeneizador de muestraz</div>
+          <div class="equipo-codigo">Código: 011374</div>
+          <div class="equipo-info">
+            <span>Modelo: FastPrep-245G</span>
+            <span>Marca: M.P.BIOMEDICALS</span>
+            <span>Serie: 532266890008</span>
+          </div>
+          <span class="equipo-area">Área de Procesamiento</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          <span class="equipo-pdf">📄 Manual disponible</span>
+        </a>
+        <a href="equipos/balanza-de-precisión-011373.html" class="equipo-card" data-area="Área de Procesamiento">
+          <div class="equipo-nombre">Balanza de precisión</div>
+          <div class="equipo-codigo">Código: 011373</div>
+          <div class="equipo-info">
+            <span>Modelo: FX-500i</span>
+            <span>Marca: INTERLAB</span>
+            <span>Serie: 602206860084</span>
+          </div>
+          <span class="equipo-area">Área de Procesamiento</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          <span class="equipo-pdf">📄 Manual disponible</span>
+        </a>
+        <a href="equipos/agitador-magnetico-011369.html" class="equipo-card" data-area="Área de Procesamiento">
+          <div class="equipo-nombre">Agitador magnetico</div>
+          <div class="equipo-codigo">Código: 011369</div>
+          <div class="equipo-info">
+            <span>Modelo: SP131320-33</span>
+            <span>Marca: THERMO SCIENTIFIC</span>
+            <span>Serie: 042202400060</span>
+          </div>
+          <span class="equipo-area">Área de Procesamiento</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/munitor-011351.html" class="equipo-card" data-area="Área de Procesamiento">
+          <div class="equipo-nombre">Munitor</div>
+          <div class="equipo-codigo">Código: 011351</div>
+          <div class="equipo-info">
+            <span>Modelo: N/A</span>
+            <span>Marca: DELL</span>
+            <span>Serie: 877009969</span>
+          </div>
+          <span class="equipo-area">Área de Procesamiento</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/munitor-1-011349.html" class="equipo-card" data-area="Área de Procesamiento">
+          <div class="equipo-nombre">Munitor 1</div>
+          <div class="equipo-codigo">Código: 011349</div>
+          <div class="equipo-info">
+            <span>Modelo: N/A</span>
+            <span>Marca: DELL</span>
+            <span>Serie: 740877004970</span>
+          </div>
+          <span class="equipo-area">Área de Procesamiento</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/refrigerador-1-010037.html" class="equipo-card" data-area="Área de Conservación y Criopreservación">
+          <div class="equipo-nombre">Refrigerador 1</div>
+          <div class="equipo-codigo">Código: 010037</div>
+          <div class="equipo-info">
+            <span>Modelo: REEL2304D</span>
+            <span>Marca: THERMO SCIENTIFIC</span>
+            <span>Serie: 112267820003</span>
+          </div>
+          <span class="equipo-area">Área de Conservación y Criopreservación</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/refrigerador-2-010035.html" class="equipo-card" data-area="Área de Conservación y Criopreservación">
+          <div class="equipo-nombre">Refrigerador 2</div>
+          <div class="equipo-codigo">Código: 010035</div>
+          <div class="equipo-info">
+            <span>Modelo: ULT2330D</span>
+            <span>Marca: THERMO SCIENTIFIC</span>
+            <span>Serie: 112224260020</span>
+          </div>
+          <span class="equipo-area">Área de Conservación y Criopreservación</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/refrigerador-3-010032.html" class="equipo-card" data-area="Área de Conservación y Criopreservación">
+          <div class="equipo-nombre">Refrigerador 3</div>
+          <div class="equipo-codigo">Código: 010032</div>
+          <div class="equipo-info">
+            <span>Modelo: UFX40086d</span>
+            <span>Marca: THERMO SCIENTIFIC</span>
+            <span>Serie: 112224260019</span>
+          </div>
+          <span class="equipo-area">Área de Conservación y Criopreservación</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/transformador-de-refrigeración-1-010034.html" class="equipo-card" data-area="Área de Conservación y Criopreservación">
+          <div class="equipo-nombre">Transformador de refrigeración 1</div>
+          <div class="equipo-codigo">Código: 010034</div>
+          <div class="equipo-info">
+            <span>Modelo: Monofásico</span>
+            <span>Marca: PERTEL</span>
+            <span>Serie: 462299500111</span>
+          </div>
+          <span class="equipo-area">Área de Conservación y Criopreservación</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/transformador-de-refrigeración-2-010030.html" class="equipo-card" data-area="Área de Conservación y Criopreservación">
+          <div class="equipo-nombre">Transformador de refrigeración 2</div>
+          <div class="equipo-codigo">Código: 010030</div>
+          <div class="equipo-info">
+            <span>Modelo: Monofásico</span>
+            <span>Marca: PERTEL</span>
+            <span>Serie: 462299500110</span>
+          </div>
+          <span class="equipo-area">Área de Conservación y Criopreservación</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/aire-acondicionado-010390.html" class="equipo-card" data-area="Área de Conservación y Criopreservación">
+          <div class="equipo-nombre">Aire acondicionado</div>
+          <div class="equipo-codigo">Código: 010390</div>
+          <div class="equipo-info">
+            <span>Modelo: TBH41K-024-H3U1C</span>
+            <span>Marca: TEMPBLUE</span>
+            <span>Serie: 112236140006</span>
+          </div>
+          <span class="equipo-area">Área de Conservación y Criopreservación</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/termo-criogenico-010038.html" class="equipo-card" data-area="Área de Conservación y Criopreservación">
+          <div class="equipo-nombre">Termo criogenico</div>
+          <div class="equipo-codigo">Código: 010038</div>
+          <div class="equipo-info">
+            <span>Modelo: CK509X3</span>
+            <span>Marca: THERMO SCIENTIFIC</span>
+            <span>Serie: 53229632012</span>
+          </div>
+          <span class="equipo-area">Área de Conservación y Criopreservación</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/incubadora-de-co2-011389.html" class="equipo-card" data-area="Área de Preparación Lavado y Esterilización">
+          <div class="equipo-nombre">Incubadora de CO2</div>
+          <div class="equipo-codigo">Código: 011389</div>
+          <div class="equipo-info">
+            <span>Modelo: Heracell 150i</span>
+            <span>Marca: THERMO SCIENTIFIC</span>
+            <span>Serie: 532269040019</span>
+          </div>
+          <span class="equipo-area">Área de Preparación Lavado y Esterilización</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          <span class="equipo-pdf">📄 Manual disponible</span>
+        </a>
+        <a href="equipos/horno-de-esterilización-011388.html" class="equipo-card" data-area="Área de Preparación Lavado y Esterilización">
+          <div class="equipo-nombre">Horno de esterilización</div>
+          <div class="equipo-codigo">Código: 011388</div>
+          <div class="equipo-info">
+            <span>Modelo: UN55</span>
+            <span>Marca: MEMMERT</span>
+            <span>Serie: 672256980010</span>
+          </div>
+          <span class="equipo-area">Área de Preparación Lavado y Esterilización</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/ultrapurificador-de-agua-011387.html" class="equipo-card" data-area="Área de Preparación Lavado y Esterilización">
+          <div class="equipo-nombre">Ultrapurificador de agua</div>
+          <div class="equipo-codigo">Código: 011387</div>
+          <div class="equipo-info">
+            <span>Modelo: MicroPure UV/UF</span>
+            <span>Marca: THERMO SCIENTIFIC</span>
+            <span>Serie: 532291310008</span>
+          </div>
+          <span class="equipo-area">Área de Preparación Lavado y Esterilización</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/incubadora-convencional-011383.html" class="equipo-card" data-area="Área de Preparación Lavado y Esterilización">
+          <div class="equipo-nombre">Incubadora convencional</div>
+          <div class="equipo-codigo">Código: 011383</div>
+          <div class="equipo-info">
+            <span>Modelo: IF55</span>
+            <span>Marca: MEMMERT</span>
+            <span>Serie: 532269040031</span>
+          </div>
+          <span class="equipo-area">Área de Preparación Lavado y Esterilización</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          <span class="equipo-pdf">📄 Manual disponible</span>
+        </a>
+        <a href="equipos/baño-maría-011390.html" class="equipo-card" data-area="Área de Preparación Lavado y Esterilización">
+          <div class="equipo-nombre">Baño María</div>
+          <div class="equipo-codigo">Código: 011390</div>
+          <div class="equipo-info">
+            <span>Modelo: WNE</span>
+            <span>Marca: MEMMERT</span>
+            <span>Serie: 672243310068</span>
+          </div>
+          <span class="equipo-area">Área de Preparación Lavado y Esterilización</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          <span class="equipo-pdf">📄 Manual disponible</span>
+        </a>
+        <a href="equipos/destilador-de-agua-011385.html" class="equipo-card" data-area="Área de Preparación Lavado y Esterilización">
+          <div class="equipo-nombre">Destilador de agua</div>
+          <div class="equipo-codigo">Código: 011385</div>
+          <div class="equipo-info">
+            <span>Modelo: GFL 2004</span>
+            <span>Marca: GFL</span>
+            <span>Serie: 532230630025</span>
+          </div>
+          <span class="equipo-area">Área de Preparación Lavado y Esterilización</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/proyector-011386.html" class="equipo-card" data-area="Área de Preparación Lavado y Esterilización">
+          <div class="equipo-nombre">PROYECTOR</div>
+          <div class="equipo-codigo">Código: 011386</div>
+          <div class="equipo-info">
+            <span>Modelo: Power lite</span>
+            <span>Marca: EPSON</span>
+            <span>Serie: 952278340891</span>
+          </div>
+          <span class="equipo-area">Área de Preparación Lavado y Esterilización</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/autoclave-011384.html" class="equipo-card" data-area="Área de Preparación Lavado y Esterilización">
+          <div class="equipo-nombre">AUTOCLAVE</div>
+          <div class="equipo-codigo">Código: 011384</div>
+          <div class="equipo-info">
+            <span>Modelo: bioclave &L</span>
+            <span>Marca: BIO RAD</span>
+            <span>Serie: 32200250053</span>
+          </div>
+          <span class="equipo-area">Área de Preparación Lavado y Esterilización</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          <span class="equipo-pdf">📄 Manual disponible</span>
+        </a>
+        <a href="equipos/microscopio-electronico-010361.html" class="equipo-card" data-area="Área de Preparación Lavado y Esterilización">
+          <div class="equipo-nombre">MICROSCOPIO ELECTRONICO</div>
+          <div class="equipo-codigo">Código: 010361</div>
+          <div class="equipo-info">
+            <span>Modelo: Axio Vert.A1</span>
+            <span>Marca: ZEISS</span>
+            <span>Serie: 532278560637</span>
+          </div>
+          <span class="equipo-area">Área de Preparación Lavado y Esterilización</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/csb-clase-2-011395.html" class="equipo-card" data-area="Área de Amplificación (PCR)">
+          <div class="equipo-nombre">CSB CLASE 2</div>
+          <div class="equipo-codigo">Código: 011395</div>
+          <div class="equipo-info">
+            <span>Modelo: Serie 1300 A2</span>
+            <span>Marca: THERMO SCIENTIFIC</span>
+            <span>Serie: 532210730013</span>
+          </div>
+          <span class="equipo-area">Área de Amplificación (PCR)</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/pcr-workstation-011398.html" class="equipo-card" data-area="Área de Amplificación (PCR)">
+          <div class="equipo-nombre">PCR WORKSTATION</div>
+          <div class="equipo-codigo">Código: 011398</div>
+          <div class="equipo-info">
+            <span>Modelo: UV3 hepa PCR</span>
+            <span>Marca: UVP</span>
+            <span>Serie: 532210730012</span>
+          </div>
+          <span class="equipo-area">Área de Amplificación (PCR)</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/centrifuga-de-mircoplacas-010003.html" class="equipo-card" data-area="Área de Amplificación (PCR)">
+          <div class="equipo-nombre">CENTRIFUGA DE MIRCOPLACAS</div>
+          <div class="equipo-codigo">Código: 010003</div>
+          <div class="equipo-info">
+            <span>Modelo: Plate Spinner</span>
+            <span>Marca: VWR</span>
+            <span>Serie: 532278200006</span>
+          </div>
+          <span class="equipo-area">Área de Amplificación (PCR)</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/mini-centrifuga-1-010001.html" class="equipo-card" data-area="Área de Amplificación (PCR)">
+          <div class="equipo-nombre">MINI CENTRIFUGA  1</div>
+          <div class="equipo-codigo">Código: 010001</div>
+          <div class="equipo-info">
+            <span>Modelo: IR 220VAC</span>
+            <span>Marca: USA SCIENTIFIC</span>
+            <span>Serie: 532278200004</span>
+          </div>
+          <span class="equipo-area">Área de Amplificación (PCR)</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/mini-centrifuga-2-010002.html" class="equipo-card" data-area="Área de Amplificación (PCR)">
+          <div class="equipo-nombre">MINI CENTRIFUGA  2</div>
+          <div class="equipo-codigo">Código: 010002</div>
+          <div class="equipo-info">
+            <span>Modelo: IR 220VAC</span>
+            <span>Marca: USA SCIENTIFIC</span>
+            <span>Serie: 532278200005</span>
+          </div>
+          <span class="equipo-area">Área de Amplificación (PCR)</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/termociclador-011400.html" class="equipo-card" data-area="Área de Amplificación (PCR)">
+          <div class="equipo-nombre">TERMOCICLADOR</div>
+          <div class="equipo-codigo">Código: 011400</div>
+          <div class="equipo-info">
+            <span>Modelo: Proflex PCR system</span>
+            <span>Marca: THERMO SCIENTIFIC</span>
+            <span>Serie: 532296400006</span>
+          </div>
+          <span class="equipo-area">Área de Amplificación (PCR)</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/qpcr-010004.html" class="equipo-card" data-area="Área de Amplificación (PCR)">
+          <div class="equipo-nombre">qPCR</div>
+          <div class="equipo-codigo">Código: 010004</div>
+          <div class="equipo-info">
+            <span>Modelo: QuantStudio</span>
+            <span>Marca: THERMO SCIENTIFIC</span>
+            <span>Serie: 532296400007</span>
+          </div>
+          <span class="equipo-area">Área de Amplificación (PCR)</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/baño-seco-digital-de-agitacion-y-calentamiento-010008.html" class="equipo-card" data-area="Área de Amplificación (PCR)">
+          <div class="equipo-nombre">BAÑO SECO DIGITAL DE AGITACION Y CALENTAMIENTO</div>
+          <div class="equipo-codigo">Código: 010008</div>
+          <div class="equipo-info">
+            <span>Modelo: 88880028</span>
+            <span>Marca: THERMO SCIENTIFIC</span>
+            <span>Serie: 6722998270004</span>
+          </div>
+          <span class="equipo-area">Área de Amplificación (PCR)</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/termociclador-en-tiempo-real-010009.html" class="equipo-card" data-area="Área de Amplificación (PCR)">
+          <div class="equipo-nombre">TERMOCICLADOR EN TIEMPO REAL</div>
+          <div class="equipo-codigo">Código: 010009</div>
+          <div class="equipo-info">
+            <span>Modelo: Linegene 9600</span>
+            <span>Marca: BIOER TECHNOLOGY</span>
+            <span>Serie: 5322996400025</span>
+          </div>
+          <span class="equipo-area">Área de Amplificación (PCR)</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/espectofotrometro-010010.html" class="equipo-card" data-area="Área de Amplificación (PCR)">
+          <div class="equipo-nombre">ESPECTOFOTROMETRO</div>
+          <div class="equipo-codigo">Código: 010010</div>
+          <div class="equipo-info">
+            <span>Modelo: DS-15</span>
+            <span>Marca: DENOVIX</span>
+            <span>Serie: 602239530066</span>
+          </div>
+          <span class="equipo-area">Área de Amplificación (PCR)</span>
+          <span class="equipo-estado malo">Malo</span>
+          
+        </a>
+        <a href="equipos/espectofotrometro-2-010012.html" class="equipo-card" data-area="Área de Amplificación (PCR)">
+          <div class="equipo-nombre">ESPECTOFOTROMETRO 2</div>
+          <div class="equipo-codigo">Código: 010012</div>
+          <div class="equipo-info">
+            <span>Modelo: DS-15</span>
+            <span>Marca: DENOVIX</span>
+            <span>Serie: 602239530065</span>
+          </div>
+          <span class="equipo-area">Área de Amplificación (PCR)</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/agitador-vortex-010011.html" class="equipo-card" data-area="Área de Amplificación (PCR)">
+          <div class="equipo-nombre">AGITADOR VORTEX</div>
+          <div class="equipo-codigo">Código: 010011</div>
+          <div class="equipo-info">
+            <span>Modelo: LP Vortex mixer</span>
+            <span>Marca: THERMO SCIENTIFIC</span>
+            <span>Serie: 532201880013</span>
+          </div>
+          <span class="equipo-area">Área de Amplificación (PCR)</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/balanza-analitica-010013.html" class="equipo-card" data-area="Área de Amplificación (PCR)">
+          <div class="equipo-nombre">BALANZA ANALITICA</div>
+          <div class="equipo-codigo">Código: 010013</div>
+          <div class="equipo-info">
+            <span>Modelo: Quintix</span>
+            <span>Marca: SARTORIUS</span>
+            <span>Serie: 0033006573</span>
+          </div>
+          <span class="equipo-area">Área de Amplificación (PCR)</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/rectificador-de-energia-1-010005.html" class="equipo-card" data-area="Área de Amplificación (PCR)">
+          <div class="equipo-nombre">RECTIFICADOR DE ENERGIA 1</div>
+          <div class="equipo-codigo">Código: 010005</div>
+          <div class="equipo-info">
+            <span>Modelo: GXT3</span>
+            <span>Marca: LIEBERT</span>
+            <span>Serie: 1503303288AF433</span>
+          </div>
+          <span class="equipo-area">Área de Amplificación (PCR)</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/rectificador-de-energia-2-010008.html" class="equipo-card" data-area="Área de Amplificación (PCR)">
+          <div class="equipo-nombre">RECTIFICADOR DE ENERGIA 2</div>
+          <div class="equipo-codigo">Código: 010008</div>
+          <div class="equipo-info">
+            <span>Modelo: GXT3</span>
+            <span>Marca: LIEBERT</span>
+            <span>Serie: 1503103298AF453</span>
+          </div>
+          <span class="equipo-area">Área de Amplificación (PCR)</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/documentador-de-geles-010027.html" class="equipo-card" data-area="Área de Electroforesis">
+          <div class="equipo-nombre">DOCUMENTADOR DE GELES</div>
+          <div class="equipo-codigo">Código: 010027</div>
+          <div class="equipo-info">
+            <span>Modelo: E-BOX</span>
+            <span>Marca: VIVILVER</span>
+            <span>Serie: 60228147003</span>
+          </div>
+          <span class="equipo-area">Área de Electroforesis</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/transiluminador-uv-010026.html" class="equipo-card" data-area="Área de Electroforesis">
+          <div class="equipo-nombre">TRANSILUMINADOR UV</div>
+          <div class="equipo-codigo">Código: 010026</div>
+          <div class="equipo-info">
+            <span>Modelo: ECX-F26-MX</span>
+            <span>Marca: VIVILVER</span>
+            <span>Serie: 532297800007</span>
+          </div>
+          <span class="equipo-area">Área de Electroforesis</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/fuente-de-alimentación-de-alto-voltaje-010015.html" class="equipo-card" data-area="Área de Electroforesis">
+          <div class="equipo-nombre">FUENTE DE ALIMENTACIÓN DE ALTO VOLTAJE</div>
+          <div class="equipo-codigo">Código: 010015</div>
+          <div class="equipo-info">
+            <span>Modelo: PS3003</span>
+            <span>Marca: ANALYTIKJENA</span>
+            <span>Serie: 462260760030</span>
+          </div>
+          <span class="equipo-area">Área de Electroforesis</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/fuente-de-alimentación-para-electroforesis-010017.html" class="equipo-card" data-area="Área de Electroforesis">
+          <div class="equipo-nombre">FUENTE DE ALIMENTACIÓN PARA ELECTROFORESIS</div>
+          <div class="equipo-codigo">Código: 010017</div>
+          <div class="equipo-info">
+            <span>Modelo: Power Pac basic</span>
+            <span>Marca: BIO RAD</span>
+            <span>Serie: 462260760027</span>
+          </div>
+          <span class="equipo-area">Área de Electroforesis</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/fuente-de-alimentación-de-alto-voltaje-010018.html" class="equipo-card" data-area="Área de Electroforesis">
+          <div class="equipo-nombre">FUENTE DE ALIMENTACIÓN DE ALTO VOLTAJE</div>
+          <div class="equipo-codigo">Código: 010018</div>
+          <div class="equipo-info">
+            <span>Modelo: PS3003</span>
+            <span>Marca: ANALYTIKJENA</span>
+            <span>Serie: 462260760029</span>
+          </div>
+          <span class="equipo-area">Área de Electroforesis</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/camara-de-electroforesis-horizontal-010019.html" class="equipo-card" data-area="Área de Electroforesis">
+          <div class="equipo-nombre">CAMARA DE ELECTROFORESIS HORIZONTAL</div>
+          <div class="equipo-codigo">Código: 010019</div>
+          <div class="equipo-info">
+            <span>Modelo: Sub Cell GT</span>
+            <span>Marca: BIO RAD</span>
+            <span>Serie: 532213830018</span>
+          </div>
+          <span class="equipo-area">Área de Electroforesis</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/camara-de-electroforesis-vertical-010020.html" class="equipo-card" data-area="Área de Electroforesis">
+          <div class="equipo-nombre">CAMARA DE ELECTROFORESIS VERTICAL</div>
+          <div class="equipo-codigo">Código: 010020</div>
+          <div class="equipo-info">
+            <span>Modelo: S2</span>
+            <span>Marca: APOGEE DESIGNS</span>
+            <span>Serie: 00270445</span>
+          </div>
+          <span class="equipo-area">Área de Electroforesis</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/camara-de-electroforesis-vertical-2-010023.html" class="equipo-card" data-area="Área de Electroforesis">
+          <div class="equipo-nombre">CAMARA DE ELECTROFORESIS VERTICAL 2</div>
+          <div class="equipo-codigo">Código: 010023</div>
+          <div class="equipo-info">
+            <span>Modelo: S2</span>
+            <span>Marca: APOGEE DESIGNS</span>
+            <span>Serie: 00270452</span>
+          </div>
+          <span class="equipo-area">Área de Electroforesis</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/camara-extractora-metálica-010021.html" class="equipo-card" data-area="Área de Electroforesis">
+          <div class="equipo-nombre">CAMARA EXTRACTORA METÁLICA</div>
+          <div class="equipo-codigo">Código: 010021</div>
+          <div class="equipo-info">
+            <span>Modelo: FH1500</span>
+            <span>Marca: BIOBASE</span>
+            <span>Serie: 326433500010</span>
+          </div>
+          <span class="equipo-area">Área de Electroforesis</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+        <a href="equipos/tanque-de-metal-cisterna-010024.html" class="equipo-card" data-area="Área de Electroforesis">
+          <div class="equipo-nombre">TANQUE DE METAL - CISTERNA</div>
+          <div class="equipo-codigo">Código: 010024</div>
+          <div class="equipo-info">
+            <span>Modelo: N/A</span>
+            <span>Marca: N/A</span>
+            <span>Serie: 673677630001</span>
+          </div>
+          <span class="equipo-area">Área de Electroforesis</span>
+          <span class="equipo-estado bueno">Bueno</span>
+          
+        </a>
+      </div>
+
+      <div class="no-results" id="noResults" style="display:none">
+        <h3>No se encontraron equipos</h3>
+        <p>Intenta con otros términos de búsqueda</p>
+      </div>
+
+      <footer class="footer">
+        <p>Laboratorio de Genética Molecular - Facultad de Ciencias Biológicas, UNSAAC</p>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+
+    const searchInput = document.getElementById('searchInput');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const grid = document.getElementById('equiposGrid');
+    const cards = grid.querySelectorAll('.equipo-card');
+    const noResults = document.getElementById('noResults');
+    let currentArea = 'todos';
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentArea = btn.dataset.area;
+        filterCards();
+      });
+    });
+
+    searchInput.addEventListener('input', filterCards);
+
+    function filterCards() {
+      const query = searchInput.value.toLowerCase();
+      let visible = 0;
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        const area = card.dataset.area;
+        const matchSearch = !query || text.includes(query);
+        const matchArea = currentArea === 'todos' || area === currentArea;
+        if (matchSearch && matchArea) {
+          card.style.display = '';
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      noResults.style.display = visible === 0 ? '' : 'none';
+    }
+  </script>
+</body>
+</html>
