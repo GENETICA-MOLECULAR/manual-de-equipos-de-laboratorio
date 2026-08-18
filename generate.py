@@ -81,7 +81,8 @@ def generate_index(equipos, areas):
     con_pdf = sum(1 for e in equipos if e['pdf'])
     
     filter_btns = '\n'.join([
-        f'            <button class="filter-btn active" data-area="todos">Todos ({total})</button>'
+        f'            <button class="filter-btn active" data-area="todos">Todos ({total})</button>',
+        f'            <button class="filter-btn" data-area="con-manual">📄 Con Manual ({con_pdf})</button>'
     ] + [
         f'            <button class="filter-btn" data-area="{area}">{area} ({sum(1 for e in equipos if e["area"]==area)})</button>'
         for area in areas
@@ -98,7 +99,7 @@ def generate_index(equipos, areas):
         else:
             estado_class = 'desuso'
         
-        card = f'''        <a href="equipos/{e['slug']}.html" class="equipo-card" data-area="{e['area']}">
+        card = f'''        <a href="equipos/{e['slug']}.html" class="equipo-card" data-area="{e['area']}" data-pdf="{ 'si' if e['pdf'] else 'no' }">
           <div class="equipo-nombre">{e['nombre']}</div>
           <div class="equipo-codigo">Código: {e['codigo']}</div>
           <div class="equipo-info">
@@ -191,6 +192,21 @@ def generate_index(equipos, areas):
         <p>Intenta con otros términos de búsqueda</p>
       </div>
 
+      <div class="manuales-section">
+        <h3>📦 Manuales Disponibles</h3>
+        <p class="manuales-desc">Descarga los manuales de uso de los equipos directamente del repositorio.</p>
+        <div class="manuales-grid">
+          <a href="https://github.com/GENETICA-MOLECULAR/manual-de-equipos-de-laboratorio/tree/main/pdfs" target="_blank" class="manual-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            Ver todos los manuales en GitHub
+          </a>
+          <a href="https://github.com/GENETICA-MOLECULAR/manual-de-equipos-de-laboratorio/raw/main/pdfs/INSTRUCTIVO%20DE%20USOS%20DE%20EQUIPO%202023.pdf" target="_blank" class="manual-link manual-link--primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            📋 Instructivo General de Equipos 2023
+          </a>
+        </div>
+      </div>
+
       <footer class="footer">
         <p>Laboratorio de Genética Molecular - Facultad de Ciencias Biológicas, UNSAAC</p>
       </footer>
@@ -230,8 +246,9 @@ def generate_index(equipos, areas):
       cards.forEach(card => {{
         const text = card.textContent.toLowerCase();
         const area = card.dataset.area;
+        const hasPdf = card.dataset.pdf === 'si';
         const matchSearch = !query || text.includes(query);
-        const matchArea = currentArea === 'todos' || area === currentArea;
+        const matchArea = currentArea === 'todos' || area === currentArea || (currentArea === 'con-manual' && hasPdf);
         if (matchSearch && matchArea) {{
           card.style.display = '';
           visible++;
