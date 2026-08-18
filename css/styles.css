@@ -97,18 +97,22 @@ body{
 }
 
 .logo-container{
-  width:64px;
-  height:64px;
+  width:80px;
+  height:56px;
   border-radius:var(--radius-md);
   overflow:hidden;
   flex-shrink:0;
-  border:2px solid var(--clr-border)
+  border:2px solid var(--clr-border);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--clr-bg)
 }
 
 .logo-icon{
   width:100%;
   height:100%;
-  object-fit:cover
+  object-fit:contain
 }
 
 .titles h1{
