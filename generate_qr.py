@@ -57,7 +57,7 @@ def generate_qr_pdf(equipos):
     qr_size = 4 * inch
     cols = 2
     rows = 3
-    margin_x = (width - cols * (qr_size + 0.5 * inch)) / 2
+    margin_x = (width - cols * (qr_size + 0.5 * inch)) / 2 + 0.3 * inch
     margin_top = 0.75 * inch
     
     page_num = 0
