@@ -54,11 +54,11 @@ def generate_qr_pdf(equipos):
     c = canvas.Canvas(pdf_path, pagesize=letter)
     width, height = letter
     
-    qr_size = 4 * inch
+    qr_size = 3.5 * inch
     cols = 2
-    rows = 3
+    rows = 2
     margin_x = (width - cols * (qr_size + 0.5 * inch)) / 2 + 0.3 * inch
-    margin_top = 0.75 * inch
+    margin_top = 1 * inch
     
     page_num = 0
     items_per_page = cols * rows
