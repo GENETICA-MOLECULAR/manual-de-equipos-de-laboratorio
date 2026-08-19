@@ -90,12 +90,10 @@
         </div>
         </div>
 
-
-      <div class="pdf-section">
-        <h3>Manual de Uso</h3>
+      <div class="doc-section">
         <div class="placeholder-msg">
-          <h3>📄 Manual no disponible</h3>
-          <p>El manual de instrucciones para este equipo está pendiente de carga.</p>
+          <h3>📄 Documentación pendiente</h3>
+          <p>El instructivo de uso y manual para este equipo están pendientes de carga.</p>
         </div>
       </div>
 
@@ -112,6 +110,14 @@
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
     });
+
+    function showDoc(type) {
+      document.getElementById('doc-inst').style.display = type === 'inst' ? 'block' : 'none';
+      document.getElementById('doc-manual').style.display = type === 'manual' ? 'block' : 'none';
+      document.querySelectorAll('.doc-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.doc === type);
+      });
+    }
   </script>
 </body>
 </html>

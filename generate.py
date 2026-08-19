@@ -295,49 +295,77 @@ def generate_equipo_page(e, instructivos):
     slug = e['slug']
     inst_list = instructivos.get(slug, [])
     
-    inst_section = ""
-    if inst_list:
-        inst_cards = []
-        for i, inst_text in enumerate(inst_list):
-            formatted = format_instructivo_html(inst_text)
-            title_match = re.search(r'INSTRUCTIVO DE USO[:\s]+([^\n]+)', inst_text, re.IGNORECASE)
-            inst_title = title_match.group(1).strip() if title_match else f"Instructivo {i+1}"
-            
-            inst_cards.append(f'''
-        <div class="inst-card">
-          <h4 class="inst-card-title">{inst_title}</h4>
-          {formatted}
-        </div>''')
-        
-        inst_section = f'''
-      <div class="instructivos-section">
-        <h3>📋 Instructivos de Uso</h3>
-        <p class="instructivos-desc">Pasos para el uso correcto de este equipo.</p>
-        {''.join(inst_cards)}
-      </div>'''
+    has_manual = e['pdf'] is not None
+    has_inst = os.path.exists(os.path.join(OUTPUT_DIR, "instructivos_pdf", f"{slug}.pdf"))
+    if not has_inst:
+        nombre_slug = slugify(e['nombre'])
+        has_inst = os.path.exists(os.path.join(OUTPUT_DIR, "instructivos_pdf", f"{nombre_slug}.pdf"))
+        if has_inst:
+            inst_path = f"../instructivos_pdf/{nombre_slug}.pdf"
+        else:
+            inst_path = None
+    else:
+        inst_path = f"../instructivos_pdf/{slug}.pdf"
+    manual_path = f"../pdfs/{e['pdf']}" if has_manual else None
     
-    pdf_section = ""
-    if e['pdf']:
-        pdf_path = f"../pdfs/{e['pdf']}"
-        pdf_section = f'''
-      <div class="pdf-section">
-        <h3>Manual de Uso</h3>
-        <div class="pdf-viewer">
-          <iframe src="{pdf_path}" title="Manual de {e['nombre']}"></iframe>
+    doc_section = ""
+    
+    if has_manual and has_inst:
+        doc_section = f'''
+      <div class="doc-section">
+        <div class="doc-toggle">
+          <button class="doc-tab active" data-doc="inst" onclick="showDoc('inst')">📋 Instructivo</button>
+          <button class="doc-tab" data-doc="manual" onclick="showDoc('manual')">📖 Manual Original</button>
         </div>
-        <br>
-        <a href="{pdf_path}" download class="pdf-download">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          Descargar Manual (PDF)
-        </a>
+        <div class="doc-viewer" id="doc-inst" style="display:block">
+          <iframe src="{inst_path}" title="Instructivo de {e['nombre']}"></iframe>
+        </div>
+        <div class="doc-viewer" id="doc-manual" style="display:none">
+          <iframe src="{manual_path}" title="Manual de {e['nombre']}"></iframe>
+        </div>
+        <div class="doc-actions">
+          <a href="{inst_path}" download class="pdf-download">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Descargar Instructivo
+          </a>
+          <a href="{manual_path}" download class="pdf-download pdf-download--secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Descargar Manual
+          </a>
+        </div>
+      </div>'''
+    elif has_inst:
+        doc_section = f'''
+      <div class="doc-section">
+        <div class="doc-viewer" style="display:block">
+          <iframe src="{inst_path}" title="Instructivo de {e['nombre']}"></iframe>
+        </div>
+        <div class="doc-actions">
+          <a href="{inst_path}" download class="pdf-download">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Descargar Instructivo
+          </a>
+        </div>
+      </div>'''
+    elif has_manual:
+        doc_section = f'''
+      <div class="doc-section">
+        <div class="doc-viewer" style="display:block">
+          <iframe src="{manual_path}" title="Manual de {e['nombre']}"></iframe>
+        </div>
+        <div class="doc-actions">
+          <a href="{manual_path}" download class="pdf-download">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Descargar Manual
+          </a>
+        </div>
       </div>'''
     else:
-        pdf_section = '''
-      <div class="pdf-section">
-        <h3>Manual de Uso</h3>
+        doc_section = '''
+      <div class="doc-section">
         <div class="placeholder-msg">
-          <h3>📄 Manual no disponible</h3>
-          <p>El manual de instrucciones para este equipo está pendiente de carga.</p>
+          <h3>📄 Documentación pendiente</h3>
+          <p>El instructivo de uso y manual para este equipo están pendientes de carga.</p>
         </div>
       </div>'''
     
@@ -432,8 +460,7 @@ def generate_equipo_page(e, instructivos):
           <div class="info-value">{e['area']}</div>
         </div>
         </div>
-{inst_section}
-{pdf_section}
+{doc_section}
 
       <footer class="footer">
         <p>Laboratorio de Genética Molecular - Facultad de Ciencias Biológicas, UNSAAC</p>
@@ -448,6 +475,14 @@ def generate_equipo_page(e, instructivos):
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
     }});
+
+    function showDoc(type) {{
+      document.getElementById('doc-inst').style.display = type === 'inst' ? 'block' : 'none';
+      document.getElementById('doc-manual').style.display = type === 'manual' ? 'block' : 'none';
+      document.querySelectorAll('.doc-tab').forEach(tab => {{
+        tab.classList.toggle('active', tab.dataset.doc === type);
+      }});
+    }}
   </script>
 </body>
 </html>'''

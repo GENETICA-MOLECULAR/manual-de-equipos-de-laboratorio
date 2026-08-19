@@ -90,17 +90,27 @@
         </div>
         </div>
 
-
-      <div class="pdf-section">
-        <h3>Manual de Uso</h3>
-        <div class="pdf-viewer">
+      <div class="doc-section">
+        <div class="doc-toggle">
+          <button class="doc-tab active" data-doc="inst" onclick="showDoc('inst')">📋 Instructivo</button>
+          <button class="doc-tab" data-doc="manual" onclick="showDoc('manual')">📖 Manual Original</button>
+        </div>
+        <div class="doc-viewer" id="doc-inst" style="display:block">
+          <iframe src="../instructivos_pdf/autoclave.pdf" title="Instructivo de AUTOCLAVE"></iframe>
+        </div>
+        <div class="doc-viewer" id="doc-manual" style="display:none">
           <iframe src="../pdfs/AUTOCLAVE  BENCHMARK.pdf" title="Manual de AUTOCLAVE"></iframe>
         </div>
-        <br>
-        <a href="../pdfs/AUTOCLAVE  BENCHMARK.pdf" download class="pdf-download">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          Descargar Manual (PDF)
-        </a>
+        <div class="doc-actions">
+          <a href="../instructivos_pdf/autoclave.pdf" download class="pdf-download">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Descargar Instructivo
+          </a>
+          <a href="../pdfs/AUTOCLAVE  BENCHMARK.pdf" download class="pdf-download pdf-download--secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Descargar Manual
+          </a>
+        </div>
       </div>
 
       <footer class="footer">
@@ -116,6 +126,14 @@
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
     });
+
+    function showDoc(type) {
+      document.getElementById('doc-inst').style.display = type === 'inst' ? 'block' : 'none';
+      document.getElementById('doc-manual').style.display = type === 'manual' ? 'block' : 'none';
+      document.querySelectorAll('.doc-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.doc === type);
+      });
+    }
   </script>
 </body>
 </html>
