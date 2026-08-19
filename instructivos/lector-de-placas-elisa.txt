@@ -1,0 +1,18 @@
+LECTOR DE PLACAS DE ELISA
+MARCA: AWARENESS
+MODELO: STAT FAX 4200
+SERIE: 4200-1994
+1. Conectar el enchufe del cable de alimentación del equipo a la
+toma de corriente eléctrica.
+2. Presionar el botón de encendido (ubicado en la batería del
+cargador)
+3. La pantalla se mostrará automáticamente mostrando el panel
+táctil del equipo desplegando el menú de opciones
+4. Seleccionar el menú de pantallas táctil del equipo de ensayo a
+realizar
+5. Establecer los parámetros de la prueba a ejecutar
+6. Para correr una prueba se puede utilizar los protocolos
+establecidos en el programa o se pueden crear protocolos de
+acuerdo a los kits a utilizar
+7. Apagar el equipo
+8. Retirar el enchufe del equipo de la corriente eléctrica

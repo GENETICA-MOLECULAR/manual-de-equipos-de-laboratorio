@@ -1,0 +1,78 @@
+ESPECTOFOTONANÓMETRO
+MARCA: DENOVIX
+MODELO: DS-11
+SERIE: S02419
+1. Conectar el cable de alimentación del equipo a la
+corriente eléctrica.
+2.
+3.
+
+4.
+
+para
+
+PESO INESTABLE: Para medir el peso de un pequeño e inquisitivo ratón.
+Toque la tecla de menú para acceder al modo de selección para aplicaciones y elija
+la opción “Peso inestable” ---Toque la barra gris para definir la cantidad de
+operaciones de pesaje (“Mediciones”) --- Por defecto, la cantidad de mediciones se
+ha fijado en cinco pero puede introducir una cantidad diferente tocando los tres
+puntos --- Toque por ejemplo 1 y después 5 para fijar una cantidad de 15
+mediciones y toque la marca de verificación para confirmar esta cantidad --Coloque su muestra o un animal sobre el platillo y pulse START para comenzar el
+pesaje en condiciones inestables --- El resultado medio se muestra con un triángulo
+(= valor calculado).
+PESAJE: Con esta aplicación determinará el peso de un producto dentro
+del rango específico de pesaje del aparato. Toque la tecla de menú --- Toque en el
+
+5.
+
+6.
+
+menú el símbolo Pesaje --- Toque en
+para poner la balanza a cero --- Si se
+trabaja con un recipiente, coloque el recipiente vacío sobre la balanza. Toque en
+para tarar la balanza, después de tarar la balanza vuelve a mostrar cero --Coloque el producto a pesar sobre la balanza --- Una vez que el valor de pesaje no
+cambie más y se muestre la unidad, puede leerse el valor medido.
+8. Retirar cuidadosamente el contenedor conjuntamente con la muestra
+9. Presionar el símbolo menú y aparecerá el símbolo apagado y presione este último
+10. Retirar el enchufe del equipo de la corriente eléctrica
+11. Registrar el uso del equipo
+
+7.
+8.
+9.
+
+Presionar el botón de encendido
+ubicada en la parte
+posterior posición inferior derecha
+La pantalla se encenderá automáticamente mostrando
+el panel táctil de control de equipo desplegando un menú
+de opciones.
+Seleccionar del menú de opciones el ensayo a realizar;
+por ejemplo:
+Si seleccionamos la opción dsDNA
+se mostrara
+en la pantalla las opciones de Lectura, Informe y Gráfico.
+Utilizar la opción de CERO cuando realice el blanco con
+la solución de referencia y el botón MEDIDA para medir
+las muestras. Use el menú desplegable para seleccionar
+el modo de medición, podemos elegir entre el modo
+microvolumen, modo rápido o camino óptico corto.
+Si elegimos el MODO MICROVOLUMEN, se deberá
+tomar una alícuota de 1ul y colocarlo en la superficie de
+medición inferior, mover el brazo hacia abajo con
+MUCHO CUIDADO Y DESPACIO, luego tocar el botón
+CERO --- Retirar la solución de ambas superficies de la
+muestra con una toallita de laboratorio exclusivo para
+dicho procedimiento. Luego pipetear 1ul de la solución
+de la muestra en la superficie de muestra inferior, baje el
+brazo y toque el botón MEDIDA, en esta etapa tenemos
+la opción de ingresar el nombre de la muestra usando el
+teclado.
+Para el modo de EJECUCIÓN AUTOMATICA presionar
+el botón AUTO RUN – Cargar la muestra y se medirá
+automáticamente.
+Presionar el icono
+de la pantalla táctil para apagar
+el equipo
+Retirar el enchufe del equipo de la corriente eléctrica
+Registrar el uso del equipo

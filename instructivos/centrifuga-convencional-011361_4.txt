@@ -1,0 +1,23 @@
+MICROCENTRIFUGA
+MARCA: DLAB
+MODELO: D3024
+SERIE: LW178AH0000057
+1. Conectar el enchufe del cable de alimentación del equipo a la toma de
+corriente eléctrica.
+2.
+
+Presionar el botón de encendido ON/OFF (Ubicado al lado derecho)
+el bloqueo de la puerta se abre automáticamente
+3. A continuación, se mostrará el panel de control
+4. Para colocar las muestras retirar la tapa del rotor girando en sentido
+antihorario
+5. Coloque las muestras una frente de otra de manera simétrica, ya que la
+carga desigual puede provocar daños.
+6. Cierre la tapa de la centrífuga presionándola ligeramente
+7. Presione el botón “SELECT” para elegir el parámetro que deseamos
+modificar. Gire en el sentido de las agujas del reloj el botón de parámetro
+para aumentar o disminuir el tiempo y la velocidad de la centrifuga.
+8. Una vez culminado el procedimiento de centrifugado la tapa se abre
+automáticamente
+9. Apagar el equipo
+10. Registrar el uso de equipo

@@ -1,0 +1,35 @@
+CÁMARA DE ELECTROFORESIS VERTICAL
+MARCA: APOGEE
+MODELO: S2
+SERIE: 00270452
+1. Conectar el cable de alimentación de la fuente de corriente eléctrica
+2. Preparar el molde. El ensamblaje de los cristales se lleva acabo
+colocando los separadores en los extremos de la placa blanca de
+aluminio, luego se sitúa encima del material translúcido procurando
+que encaje perfectamente.
+3. Introducir el conjunto entre las prensas procurando que los cristales
+lleguen bien al extremo inferior de las prensas
+4. Presionar las tuercas por orden alternando ambos lados ejerciendo
+cierta presión sobre ellas
+5. Colocar el conjunto ensamblado en el montador colocando las tuercas
+externas las cuales dejarán estanco el espacio entre los cristales el
+cual servirá de molde para la formación del gel poliacrilamida.
+6. Verter el gel separador en el molde hasta los 2/3 de la altura total
+7. Insertar el peine de forma biselada el cual dará forma a los pocillos del
+gel de electroforesis
+8. Extraer el cristal y colocar sobre el soporte de la cubeta de
+electroforesis
+9. Extraer el peine y llenar con buffer de electroforesis el espacio que
+queda entre el cristal y el soporte, así como la parte inferior de la
+cubeta.
+10. Cargar las muestras en los pocillos
+11. Ensamblar la parte superior de la cubeta de electroforesis y conectar
+la fuente de poder
+12. Programar el voltaje e iniciar la electroforesis
+13. Apagar la fuente de poder
+14. Desensamblar el molde y trasladar el gel hasta la placa que contiene
+el líquido de tinción, este proceso es muy delicado
+15. Dejar reposar el tiempo establecido según protocolo, éste se decolora
+y ya se puede observar el patrón de bandas
+16. Observar los resultados en el trans – iluminador
+17. Registrar el uso.

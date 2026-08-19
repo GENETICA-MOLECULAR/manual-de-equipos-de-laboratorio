@@ -2,10 +2,12 @@
 import csv
 import os
 import re
+import json
 
 CSV_PATH = "/home/sam/Downloads/Laboratorio Genetica Molecular - Inventario Equipos (Inventario) 2026-08-18_15-59.csv"
 OUTPUT_DIR = "/home/sam/Projects/04_registros_equipos/inventario_equipos"
 EQUIPOS_DIR = os.path.join(OUTPUT_DIR, "equipos")
+INSTRUCTIVOS_MAP = os.path.join(OUTPUT_DIR, "instructivos_map.json")
 
 # Equipment to exclude (furniture, non-lab equipment)
 EXCLUDE_KEYWORDS = [
@@ -43,6 +45,46 @@ def should_exclude(nombre):
         if kw in nombre_lower:
             return True
     return False
+
+def load_instructivos():
+    if os.path.exists(INSTRUCTIVOS_MAP):
+        with open(INSTRUCTIVOS_MAP, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    return {}
+
+def format_instructivo_html(text):
+    lines = text.split('\n')
+    html_lines = []
+    in_list = False
+    
+    for line in lines:
+        line = line.strip()
+        if not line:
+            if in_list:
+                html_lines.append('</ol>')
+                in_list = False
+            html_lines.append('')
+            continue
+        
+        if line.startswith('MARCA:') or line.startswith('MODELO:') or line.startswith('SERIE:'):
+            key, val = line.split(':', 1)
+            html_lines.append(f'<p class="inst-meta"><strong>{key}:</strong> {val.strip()}</p>')
+        elif re.match(r'^\d+\.?\s', line):
+            if not in_list:
+                html_lines.append('<ol class="inst-pasos">')
+                in_list = True
+            step = re.sub(r'^\d+\.?\s*', '', line)
+            html_lines.append(f'  <li>{step}</li>')
+        else:
+            if in_list:
+                html_lines.append('</ol>')
+                in_list = False
+            html_lines.append(f'<p>{line}</p>')
+    
+    if in_list:
+        html_lines.append('</ol>')
+    
+    return '\n'.join(html_lines)
 
 def read_csv():
     equipos = []
@@ -249,7 +291,31 @@ def generate_index(equipos, areas):
     
     return html
 
-def generate_equipo_page(e):
+def generate_equipo_page(e, instructivos):
+    slug = e['slug']
+    inst_list = instructivos.get(slug, [])
+    
+    inst_section = ""
+    if inst_list:
+        inst_cards = []
+        for i, inst_text in enumerate(inst_list):
+            formatted = format_instructivo_html(inst_text)
+            title_match = re.search(r'INSTRUCTIVO DE USO[:\s]+([^\n]+)', inst_text, re.IGNORECASE)
+            inst_title = title_match.group(1).strip() if title_match else f"Instructivo {i+1}"
+            
+            inst_cards.append(f'''
+        <div class="inst-card">
+          <h4 class="inst-card-title">{inst_title}</h4>
+          {formatted}
+        </div>''')
+        
+        inst_section = f'''
+      <div class="instructivos-section">
+        <h3>📋 Instructivos de Uso</h3>
+        <p class="instructivos-desc">Pasos para el uso correcto de este equipo.</p>
+        {''.join(inst_cards)}
+      </div>'''
+    
     pdf_section = ""
     if e['pdf']:
         pdf_path = f"../pdfs/{e['pdf']}"
@@ -365,7 +431,8 @@ def generate_equipo_page(e):
           <div class="info-label">Área</div>
           <div class="info-value">{e['area']}</div>
         </div>
-      </div>
+        </div>
+{inst_section}
 {pdf_section}
 
       <footer class="footer">
@@ -392,9 +459,11 @@ def main():
     
     equipos = read_csv()
     areas = get_areas(equipos)
+    instructivos = load_instructivos()
     
     print(f"Equipos encontrados: {len(equipos)}")
     print(f"Áreas: {areas}")
+    print(f"Instructivos cargados: {sum(len(v) for v in instructivos.values())}")
     
     # Generate index
     index_html = generate_index(equipos, areas)
@@ -404,7 +473,7 @@ def main():
     
     # Generate individual pages
     for e in equipos:
-        html = generate_equipo_page(e)
+        html = generate_equipo_page(e, instructivos)
         filepath = os.path.join(EQUIPOS_DIR, f"{e['slug']}.html")
         with open(filepath, 'w', encoding='utf-8') as f:
             f.write(html)

@@ -1,0 +1,34 @@
+CABINA DE BIOSEGURIDAD
+MARCA: THERMO SCIENTIFIC
+MODELO: 1300
+SERIE: 300093276
+1. Conectar el cable de alimentación del equipo a la toma de corriente eléctrica
+2. Presione el botón de encendido “ON” durante 3 a 5 segundos
+3.
+4.
+
+Encender la luz fluorescente
+Mueva la ventana a la posición de trabajo, la posición correcta se alcanza cuando se enciende el LED “verde”.
+
+Espere hasta que se ilumine el LED verde flujo de aire constante.
+Instale los materiales de trabajo necesarios dentro del área de trabajo
+Introducir en la cabina de bioseguridad únicamente material requerido para realizar el procedimiento. No sobrecargar la cabina
+Después de completar el procedimiento retire las muestras de la cámara de muestra
+Desinfectar la cabina de bioseguridad
+Apagar el ventilador y la lámpara fluorescente.
+Realizar la desinfección UV: Cierre la ventana delantera y presione la tecla UV en el panel de control. Para cancelar o
+interrumpir el proceso de desinfección simplemente presione la tecla UV y deslice la ventana hacia arriba.
+11. Si se desea cambiar el tiempo de desinfección UV, encienda la unidad y mueva la ventana a la posición de trabajo -- Mantenga
+presionado la tecla UV hasta que se muestre el tiempo preestablecido --- Para aumentar el tiempo, presione la tecla de la
+fuente de alimentación interna, para reducir el tiempo presione la tecla de luz de cámara de muestra, cada vez que se presiona
+la tecla se reduce y/o aumenta en 30 minutos --- Para guardar el valor, presione la tecla UV.
+5.
+6.
+7.
+8.
+9.
+10.
+
+: Tecla de luz de cámara de muestra
+: Fuente de alimentación interna
+12. Registrar el uso de equipo.

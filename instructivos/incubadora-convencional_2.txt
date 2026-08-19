@@ -1,0 +1,40 @@
+INCUBADORA DE CO2
+MARCA: THERMO
+MODELO: HERACELL 150i
+SERIE: 41996299
+1. Volcar suficiente agua tratada en la cuba de fondo del recinto útil. La cantidad
+de carga no puede sobrepasar la marca superior del nivel de agua
+2. Asegurarse de que las válvulas de la instalación de suministro de CO 2 estén
+abiertas
+3. Conectar el cable de alimentación del equipo a la toma de corriente eléctrica.
+4. Presione el interruptor de red (se encuentra
+
+5.
+
+6.
+
+7.
+8.
+9.
+10.
+11.
+21.
+22.
+
+integrado en la cubierta frontal (de una de las
+dos patas frontales del equipo).
+Tras un breve tono de señal y una breve fase oscura, se indica el DISPLAY
+de la pantalla táctil. − Los sensores de los circuitos de regulación atraviesan
+una fase de calentamiento.
+Para programar los parámetros requeridos ajuste los valores teóricos para la
+Tº y el contenido de CO2 en la pantalla táctil. Por ejemplo, para la Temperatura
+pulse el Valor Nominal – pulse la tecla + o – para aumentar o disminuir la
+Temperatura. Aceptar y guardar con la tecla INTRO.
+Repetir el procedimiento para el contenido de CO2
+Introduce tus muestras
+Arranque el equipo, presione la tecla AUTO-START – luego INICIO
+Llenar el recinto útil, abrir ambas puertas del aparato, hasta que tras 30
+segundos suene la señal de tiempo.
+Cerrar ambas puertas de la incubadora – dar INICIO
+Una vez culminado el procedimiento. Apagar el equipo
+Registrar el uso de equipo.

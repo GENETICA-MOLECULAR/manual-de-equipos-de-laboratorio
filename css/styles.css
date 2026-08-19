@@ -487,6 +487,67 @@ body{
   margin-bottom:.5rem
 }
 
+.instructivos-section{
+  margin-top:2rem
+}
+
+.instructivos-section h3{
+  font-size:1.1rem;
+  font-weight:600;
+  margin-bottom:.5rem;
+  color:var(--clr-text)
+}
+
+.instructivos-desc{
+  font-size:.9rem;
+  color:var(--clr-text-muted);
+  margin-bottom:1rem
+}
+
+.inst-card{
+  background:var(--clr-surface);
+  border:1px solid var(--clr-border);
+  border-radius:var(--radius-md);
+  padding:1.25rem;
+  margin-bottom:1rem
+}
+
+.inst-card-title{
+  font-size:.95rem;
+  font-weight:600;
+  color:var(--clr-primary-light);
+  margin-bottom:.75rem;
+  padding-bottom:.5rem;
+  border-bottom:1px solid var(--clr-border)
+}
+
+.inst-meta{
+  font-size:.85rem;
+  color:var(--clr-text-muted);
+  margin:.25rem 0
+}
+
+.inst-meta strong{
+  color:var(--clr-text)
+}
+
+.inst-pasos{
+  margin:.75rem 0;
+  padding-left:1.25rem
+}
+
+.inst-pasos li{
+  font-size:.88rem;
+  color:var(--clr-text);
+  margin-bottom:.5rem;
+  line-height:1.5
+}
+
+.inst-pasos li::marker{
+  color:var(--clr-primary-light);
+  font-weight:600
+}
+
 .manuales-section{
   margin-top:2.5rem;
   padding-top:2rem;

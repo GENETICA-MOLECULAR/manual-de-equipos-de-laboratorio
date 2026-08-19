@@ -1,0 +1,31 @@
+TERMOCICLADOR CONVENCIONAL
+MARCA: APPLIED BIOSYSTEMS
+MODELO: PROFLEX PCR SYSTEM
+SERIE: 297804239
+1. Conectar el cable de alimentación del equipo a la toma de corriente
+eléctrica.
+2.
+3.
+
+Presionar el botón de encendido
+Se mostrará la pantalla de inicio lo siguiente:
+SET UP RUN: Muestra la T° actual del bloque, tiempo transcurrido
+para una ejecución y el estado de la ejecución
+SIGN IN: Es la opción para crear una cuenta o para iniciar sesión en
+una cuenta ya creada
+NEW METHOD: Permite crear un nuevo método de ejecución
+INCUBATE: Para usar el instrumento como incubadora precisa para
+flujos de trabajo que no sean PCR
+SETTINGS: Opción de configuración
+4. Cargar las muestras: Pipetee las muestras en los tubos de reacción
+5. Pipetee las muestras en los tubos de reacción
+6. Coloque el retenedor MicroAmp de 3x32 pocillos
+7. Coloque los tubos MicroAmp dentro del dispositivo de retención que
+se colocó en el bloque de muestra.
+8. Cierre la cubierta térmica
+9. Seleccione el método a usar
+10. Una vez que seleccione uno de los métodos, se mostrará en la
+pantalla la edición de método y si no se desea modificar ninguno de
+los parámetros, iniciar la ejecución directamente tocando la opción
+“CHOOSE BLOCK” (Elegir bloque)
+11. Apagar el equipo y registrar el uso del equipo

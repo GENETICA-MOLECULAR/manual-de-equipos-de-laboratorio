@@ -1,0 +1,34 @@
+TERMOCICLADOR EN TIEMPO REAL
+MARCA: APPLIED BIOSYSTEMS
+MODELO: QUANTSTUDIO 3 REAL TIME
+SERIE: 272320524
+12. Conectar el cable de alimentación del equipo a la toma de corriente
+eléctrica.
+13. Presionar el botón de encendido
+14. Se mostrará la pantalla de inicio lo siguiente:
+SIGN IN: Es la opción para crear una cuenta o para iniciar sesión en
+una cuenta ya creada
+LOAD EXPERIMENT: Opción para cargar experimento
+OPEN TEMPLATE: Para abrir plantillas de experimento
+RUN LAST: Verificar última ejecución
+SETTINGS: Opción de configuración, ajustes o calibrar los equipos
+: Icono de expulsión
+15. Cargue una plantilla de experimento existente o cree un plantilla de
+experimento
+16. Modifique la configuración del experimento según sea necesario
+17. Cargue la placa en el instrumento:
+
+
+
+Toque
+para expulsar el cajón del instrumento
+Cargue la placa en el adaptador de placa colocando el pozo A1
+de la placa en la esquina superior izquierda del adaptador de
+placa, asegurándose de que el código de barra mire hacia el
+frente del instrumento
+
+ Toque
+para cerrar el cajón del instrumento
+18. Inicie la ejecución desde el instrumento
+19. Transfiera los resultados al software del escritorio y luego analícelos
+20. Apagar el equipo y registrar el uso del equipo

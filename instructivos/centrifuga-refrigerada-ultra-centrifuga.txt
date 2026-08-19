@@ -1,0 +1,10 @@
+ULTRACENTRIFUGA
+MARCA: THERMO SCIENTIFIC
+MODELO: SL - 8R
+SERIE: 41677180
+1. Conectar el enchufe del cable de alimentación del equipo a la toma de
+corriente eléctrica.
+2. Presionar el botón de encendido ON/OFF (Ubicado al lado derecho)
+3. Durante un par de segundos aparece la siguiente lectura en el panel de
+control (el campo de visualización de la temperatura para el instrumento
+refrigerado).

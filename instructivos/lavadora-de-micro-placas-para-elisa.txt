@@ -1,0 +1,34 @@
+DE LAVADOR DE MICROPLACAS
+MARCA: AWARENESS
+MODELO: STAT FAX2600
+SERIE: 26009760
+1. Conectar el cable de alimentación del equipo a la corriente eléctrica
+2. Presionar el botón de encendido/apagado ubicada en la parte posterior izquierda
+3. En la pantalla del equipo aparece STAT-FAX 2600 V (Indica la versión del software)
+4. La bomba continúa su proceso hasta alcanzar su presión y chequea el vacío.
+5. Después de unos segundos, visualizará
+Press <YES> to run program.
+VA: OFF (Indica si el vacío está activado o no
+PR: 5.0
+9 :42 :00 (HORA)
+6. Colocar la microplaca sobre el portador de las placas con unos 8 o 16 pozos. Orientar la microplaca con el
+número A1 hacia la esquina frontal izquierda. Verificar que la placa esté localizada en los surcos del portador
+de la placa.
+7. Presionar la tecla PRIME para que el equipo distribuya y aspire alternadamente la solución de lavado dentro
+del reservorio, esto servirá como purga de agujas y del sistema de dispensación de soluciones (3 veces)
+8. Presionar A/D. Observar en la pantalla:
+ASPIRATE
+DOBLE ASPIRATE Y/N
+9. Presionar YES (Y) para usar la opción de aspiración doble o No (N) para usar la opción de aspiración simple.
+Observar en la pantalla:
+ENTER DESIRED VOL (ul):
+<YES> = 300
+10. Presionar YES para aceptar el volumen programado o ingresar el volumen deseado (usar el tablero
+numérico) y presionar YES
+Insert plate <YES>
+11. Presionar YES para aspirar y distribuir la solución de lavado en todos los pozos. Cuando el ciclo de
+aspirado/dispensado se complete, vuelva al método del ensayo.
+12. Al finalizar presionar ASP para retirar todo el líquido del lavado de los pozos de la placa
+13. Esperar que la placa retorne a la posición inicial.
+14. Colocar el botón de encendido/apagado
+15. Registra en el formato de uso del equipo
