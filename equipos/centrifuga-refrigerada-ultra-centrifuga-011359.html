@@ -12,16 +12,16 @@
   <link rel="stylesheet" href="../css/styles.css">
   <title>Centrifuga refrigerada (Ultra centrifuga) - Inventario de Equipos</title>
   <script>
-    const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    const savedTheme = typeof localStorage !== 'undefined' ? localStorage.getItem('theme') : null;
-    const initialTheme = savedTheme || getSystemTheme();
-    document.documentElement.setAttribute('data-theme', initialTheme);
-    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
-      if (!localStorage.getItem('theme')) {
-        document.documentElement.setAttribute('data-theme', e.matches ? 'light' : 'dark');
-      }
-    });
-  </script>
+  const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  const savedTheme = typeof localStorage !== 'undefined' ? localStorage.getItem('theme') : null;
+  const initialTheme = savedTheme || getSystemTheme();
+  document.documentElement.setAttribute('data-theme', initialTheme);
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      document.documentElement.setAttribute('data-theme', e.matches ? 'light' : 'dark');
+    }
+  });
+</script>
 </head>
 <body>
   <main class="container">
@@ -48,57 +48,52 @@
       </header>
 
       <div class="detail-info">
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Código Actual</div>
           <div class="info-value">011359</div>
         </div>
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Código Antiguo</div>
           <div class="info-value">031013</div>
         </div>
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Modelo</div>
           <div class="info-value">SL 8R</div>
         </div>
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Marca</div>
           <div class="info-value">THERMO SCIENTIFIC</div>
         </div>
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Serie</div>
           <div class="info-value">5322207900101</div>
         </div>
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Color</div>
           <div class="info-value">Blanco</div>
         </div>
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Estado</div>
           <div class="info-value">Bueno</div>
         </div>
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Situación</div>
           <div class="info-value">En uso</div>
         </div>
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Importe</div>
           <div class="info-value">N/A</div>
         </div>
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Área</div>
           <div class="info-value">Área de Procesamiento</div>
         </div>
-        </div>
+      </div>
 
       <div class="doc-section">
-        <div class="doc-viewer" style="display:block">
-          <iframe src="../instructivos_pdf/centrifuga-refrigerada-ultra-centrifuga.pdf" title="Instructivo de Centrifuga refrigerada (Ultra centrifuga)"></iframe>
-        </div>
+        <div class="doc-viewer"><iframe src="../instructivos_pdf/centrifuga-refrigerada-ultra-centrifuga.pdf" title="Instructivo de Centrifuga refrigerada (Ultra centrifuga)"></iframe></div>
         <div class="doc-actions">
-          <a href="../instructivos_pdf/centrifuga-refrigerada-ultra-centrifuga.pdf" download class="pdf-download">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            Descargar Instructivo
-          </a>
+          <a href="../instructivos_pdf/centrifuga-refrigerada-ultra-centrifuga.pdf" download class="pdf-download"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Descargar Instructivo</a>
         </div>
       </div>
 
@@ -110,18 +105,18 @@
 
   <script>
     document.getElementById('themeToggle').addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
+      const c = document.documentElement.getAttribute('data-theme');
+      const n = c === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', n);
+      localStorage.setItem('theme', n);
     });
 
     function showDoc(type) {
       document.getElementById('doc-inst').style.display = type === 'inst' ? 'block' : 'none';
       document.getElementById('doc-manual').style.display = type === 'manual' ? 'block' : 'none';
-      document.querySelectorAll('.doc-tab').forEach(tab => {
-        tab.classList.toggle('active', tab.dataset.doc === type);
-      });
+      document.querySelectorAll('.doc-tab').forEach(t =>
+        t.classList.toggle('active', t.dataset.doc === type)
+      );
     }
   </script>
 </body>

@@ -12,16 +12,16 @@
   <link rel="stylesheet" href="css/styles.css">
   <title>Inventario de Equipos - Lab. Genética Molecular UNSAAC</title>
   <script>
-    const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    const savedTheme = typeof localStorage !== 'undefined' ? localStorage.getItem('theme') : null;
-    const initialTheme = savedTheme || getSystemTheme();
-    document.documentElement.setAttribute('data-theme', initialTheme);
-    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
-      if (!localStorage.getItem('theme')) {
-        document.documentElement.setAttribute('data-theme', e.matches ? 'light' : 'dark');
-      }
-    });
-  </script>
+  const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  const savedTheme = typeof localStorage !== 'undefined' ? localStorage.getItem('theme') : null;
+  const initialTheme = savedTheme || getSystemTheme();
+  document.documentElement.setAttribute('data-theme', initialTheme);
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      document.documentElement.setAttribute('data-theme', e.matches ? 'light' : 'dark');
+    }
+  });
+</script>
 </head>
 <body>
   <main class="container">
@@ -203,7 +203,7 @@
           </div>
           <span class="equipo-area">Área de Procesamiento</span>
           <span class="equipo-estado bueno">Bueno</span>
-          <span class="equipo-pdf">📄 Manual disponible</span>
+          <span class="equipo-pdf">📄 Manual</span>
         </a>
         <a href="equipos/balanza-de-precisión-011373.html" class="equipo-card" data-area="Área de Procesamiento" data-pdf="si">
           <div class="equipo-nombre">Balanza de precisión</div>
@@ -215,7 +215,7 @@
           </div>
           <span class="equipo-area">Área de Procesamiento</span>
           <span class="equipo-estado bueno">Bueno</span>
-          <span class="equipo-pdf">📄 Manual disponible</span>
+          <span class="equipo-pdf">📄 Manual</span>
         </a>
         <a href="equipos/agitador-magnetico-011369.html" class="equipo-card" data-area="Área de Procesamiento" data-pdf="no">
           <div class="equipo-nombre">Agitador magnetico</div>
@@ -347,7 +347,7 @@
           </div>
           <span class="equipo-area">Área de Preparación Lavado y Esterilización</span>
           <span class="equipo-estado bueno">Bueno</span>
-          <span class="equipo-pdf">📄 Manual disponible</span>
+          <span class="equipo-pdf">📄 Manual</span>
         </a>
         <a href="equipos/horno-de-esterilización-011388.html" class="equipo-card" data-area="Área de Preparación Lavado y Esterilización" data-pdf="no">
           <div class="equipo-nombre">Horno de esterilización</div>
@@ -383,7 +383,7 @@
           </div>
           <span class="equipo-area">Área de Preparación Lavado y Esterilización</span>
           <span class="equipo-estado bueno">Bueno</span>
-          <span class="equipo-pdf">📄 Manual disponible</span>
+          <span class="equipo-pdf">📄 Manual</span>
         </a>
         <a href="equipos/baño-maría-011390.html" class="equipo-card" data-area="Área de Preparación Lavado y Esterilización" data-pdf="si">
           <div class="equipo-nombre">Baño María</div>
@@ -395,7 +395,7 @@
           </div>
           <span class="equipo-area">Área de Preparación Lavado y Esterilización</span>
           <span class="equipo-estado bueno">Bueno</span>
-          <span class="equipo-pdf">📄 Manual disponible</span>
+          <span class="equipo-pdf">📄 Manual</span>
         </a>
         <a href="equipos/destilador-de-agua-011385.html" class="equipo-card" data-area="Área de Preparación Lavado y Esterilización" data-pdf="no">
           <div class="equipo-nombre">Destilador de agua</div>
@@ -431,7 +431,7 @@
           </div>
           <span class="equipo-area">Área de Preparación Lavado y Esterilización</span>
           <span class="equipo-estado bueno">Bueno</span>
-          <span class="equipo-pdf">📄 Manual disponible</span>
+          <span class="equipo-pdf">📄 Manual</span>
         </a>
         <a href="equipos/microscopio-electronico-010361.html" class="equipo-card" data-area="Área de Preparación Lavado y Esterilización" data-pdf="no">
           <div class="equipo-nombre">MICROSCOPIO ELECTRONICO</div>
@@ -759,47 +759,37 @@
   </main>
 
   <script>
-    const themeToggle = document.getElementById('themeToggle');
-    themeToggle.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const c = document.documentElement.getAttribute('data-theme');
+      const n = c === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', n);
+      localStorage.setItem('theme', n);
     });
 
     const searchInput = document.getElementById('searchInput');
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const grid = document.getElementById('equiposGrid');
-    const cards = grid.querySelectorAll('.equipo-card');
+    const cards = document.querySelectorAll('.equipo-card');
     const noResults = document.getElementById('noResults');
     let currentArea = 'todos';
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentArea = btn.dataset.area;
-        filterCards();
-      });
-    });
+    filterBtns.forEach(btn => btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentArea = btn.dataset.area;
+      filterCards();
+    }));
 
     searchInput.addEventListener('input', filterCards);
 
     function filterCards() {
-      const query = searchInput.value.toLowerCase();
+      const q = searchInput.value.toLowerCase();
       let visible = 0;
       cards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-        const area = card.dataset.area;
-        const hasPdf = card.dataset.pdf === 'si';
-        const matchSearch = !query || text.includes(query);
-        const matchArea = currentArea === 'todos' || area === currentArea || (currentArea === 'con-manual' && hasPdf);
-        if (matchSearch && matchArea) {
-          card.style.display = '';
-          visible++;
-        } else {
-          card.style.display = 'none';
-        }
+        const match = (!q || card.textContent.toLowerCase().includes(q)) &&
+          (currentArea === 'todos' || card.dataset.area === currentArea ||
+           (currentArea === 'con-manual' && card.dataset.pdf === 'si'));
+        card.style.display = match ? '' : 'none';
+        if (match) visible++;
       });
       noResults.style.display = visible === 0 ? '' : 'none';
     }

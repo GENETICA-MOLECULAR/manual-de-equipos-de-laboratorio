@@ -12,16 +12,16 @@
   <link rel="stylesheet" href="../css/styles.css">
   <title>CAMARA DE ELECTROFORESIS HORIZONTAL - Inventario de Equipos</title>
   <script>
-    const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    const savedTheme = typeof localStorage !== 'undefined' ? localStorage.getItem('theme') : null;
-    const initialTheme = savedTheme || getSystemTheme();
-    document.documentElement.setAttribute('data-theme', initialTheme);
-    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
-      if (!localStorage.getItem('theme')) {
-        document.documentElement.setAttribute('data-theme', e.matches ? 'light' : 'dark');
-      }
-    });
-  </script>
+  const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  const savedTheme = typeof localStorage !== 'undefined' ? localStorage.getItem('theme') : null;
+  const initialTheme = savedTheme || getSystemTheme();
+  document.documentElement.setAttribute('data-theme', initialTheme);
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      document.documentElement.setAttribute('data-theme', e.matches ? 'light' : 'dark');
+    }
+  });
+</script>
 </head>
 <body>
   <main class="container">
@@ -48,47 +48,47 @@
       </header>
 
       <div class="detail-info">
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Código Actual</div>
           <div class="info-value">010019</div>
         </div>
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Código Antiguo</div>
           <div class="info-value">031070</div>
         </div>
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Modelo</div>
           <div class="info-value">Sub Cell GT</div>
         </div>
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Marca</div>
           <div class="info-value">BIO RAD</div>
         </div>
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Serie</div>
           <div class="info-value">532213830018</div>
         </div>
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Color</div>
           <div class="info-value">Transparente</div>
         </div>
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Estado</div>
           <div class="info-value">Bueno</div>
         </div>
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Situación</div>
           <div class="info-value">En uso</div>
         </div>
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Importe</div>
           <div class="info-value">N/A</div>
         </div>
-        <div class="info-item">
+                <div class="info-item">
           <div class="info-label">Área</div>
           <div class="info-value">Área de Electroforesis</div>
         </div>
-        </div>
+      </div>
 
       <div class="doc-section">
         <div class="placeholder-msg">
@@ -105,18 +105,18 @@
 
   <script>
     document.getElementById('themeToggle').addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
+      const c = document.documentElement.getAttribute('data-theme');
+      const n = c === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', n);
+      localStorage.setItem('theme', n);
     });
 
     function showDoc(type) {
       document.getElementById('doc-inst').style.display = type === 'inst' ? 'block' : 'none';
       document.getElementById('doc-manual').style.display = type === 'manual' ? 'block' : 'none';
-      document.querySelectorAll('.doc-tab').forEach(tab => {
-        tab.classList.toggle('active', tab.dataset.doc === type);
-      });
+      document.querySelectorAll('.doc-tab').forEach(t =>
+        t.classList.toggle('active', t.dataset.doc === type)
+      );
     }
   </script>
 </body>
